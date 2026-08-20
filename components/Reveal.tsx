@@ -60,10 +60,16 @@ export default function Reveal({
     (inView ? " in" : "") +
     (className ? " " + className : "");
 
-  const Tag = as as keyof React.JSX.IntrinsicElements;
-  return (
-    <Tag ref={ref as React.RefObject<HTMLElement>} className={cls} id={id}>
-      {children}
-    </Tag>
-  );
+  // Render the chosen tag. Cast the ref through `any` because the union of
+  // possible IntrinsicElement refs is too wide for TypeScript to unify —
+  // we know at runtime the element is always a valid HTMLElement.
+  const anyRef = ref as unknown as React.Ref<never>;
+  const props = { className: cls, id, ref: anyRef, children };
+  switch (as) {
+    case "section": return <section {...props} />;
+    case "ol":      return <ol {...props} />;
+    case "ul":      return <ul {...props} />;
+    case "aside":   return <aside {...props} />;
+    default:        return <div {...props} />;
+  }
 }
