@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Module — Full Scope Proposal</title>
+<style>
+/* ============================================================
+   HR MODULE PROPOSAL — reusable template
+   ============================================================ */
+
+:root{
+  --ink:#111318;
+  --ink-soft:#3a3f4b;
+  --muted:#6b7280;
+  --faint:#9aa1ac;
+  --line:#e4e7ec;
+  --line-strong:#cfd4dc;
+  --paper:#ffffff;
+  --wash:#f7f8fa;
+  --wash-2:#eef1f6;
+  --brand:#4f46e5;
+  --brand-2:#7c3aed;
+  --brand-3:#2563eb;
+  --brand-wash:#f2f1fe;
+  --good:#12805c;
+  --good-wash:#e7f5ef;
+  --warn:#b45309;
+  --warn-wash:#fdf3e7;
+  --serif:'Iowan Old Style','Palatino Linotype','Palatino','Georgia',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:'SF Mono','Cascadia Mono','Consolas',monospace;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:#5b6472;
+  font-size:10.2pt;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{
+  width:210mm;
+  min-height:297mm;
+  background:var(--paper);
+  margin:10mm auto;
+  padding:22mm 20mm 24mm;
+  position:relative;
+  box-shadow:0 2px 18px rgba(0,0,0,.28);
+  overflow:hidden;
+}
+
+.page::after{
+  counter-increment:pageno;
+  content:"Confidential · For evaluation only";
+  position:absolute;
+  left:20mm; right:20mm; bottom:12mm;
+  font-family:var(--sans);
+  font-size:7.4pt;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--faint);
+  border-top:1px solid var(--line);
+  padding-top:5px;
+}
+.page::before{
+  content:"HR Module · Full Scope Proposal";
+  position:absolute;
+  right:20mm; bottom:12mm;
+  font-size:7.4pt;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--faint);
+  padding-top:5px;
+  z-index:2;
+}
+body{counter-reset:pageno;}
+
+.cover::after,.cover::before{content:none;}
+
+/* COVER */
+.cover{
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(120% 80% at 82% 8%, #e8e6ff 0%, transparent 55%),
+    linear-gradient(158deg,#eef1ff 0%,#f6f4ff 34%,#ffffff 68%);
+}
+.cover-inner{
+  padding:26mm 20mm 20mm;
+  display:flex;
+  flex-direction:column;
+  height:297mm;
+}
+.brand-row{display:flex;align-items:center;gap:12px;}
+.brand-badge{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,var(--brand) 0%,var(--brand-2) 100%);
+  color:#fff;font-weight:700;font-size:15px;letter-spacing:.04em;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 16px rgba(79,70,229,.32);
+}
+.brand-name{font-family:var(--serif);font-size:19pt;color:var(--ink);letter-spacing:-.01em;}
+
+.cover-hero{margin-top:auto;}
+.eyebrow{
+  font-size:9pt;font-weight:700;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:14px;
+}
+.cover-title{
+  font-family:var(--serif);
+  font-size:52pt;
+  line-height:1.02;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  margin:0 0 20px;
+  font-weight:500;
+}
+.cover-title em{
+  font-style:italic;
+  background:linear-gradient(120deg,var(--brand-2),var(--brand-3));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.cover-lede{
+  font-size:11.5pt;line-height:1.55;color:var(--ink-soft);
+  max-width:58%;margin:0 0 34px;
+}
+
+.cover-foot{
+  margin-top:auto;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-top:26px;
+  font-size:7.8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+}
+.cover-foot .v span{color:var(--brand);}
+
+/* TABLE OF CONTENTS */
+.section-tag{
+  font-size:8pt;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:6px;
+}
+h1.doc-h1{
+  font-family:var(--serif);font-size:26pt;font-weight:500;letter-spacing:-.015em;
+  margin:0 0 4px;color:var(--ink);line-height:1.1;
+}
+.rule{height:2px;background:var(--ink);width:44px;margin:14px 0 22px;}
+
+.toc-grid{columns:1;column-gap:0;}
+.toc-item{
+  display:flex;align-items:baseline;gap:8px;
+  break-inside:avoid;margin-bottom:7px;font-size:9.6pt;
+}
+.toc-item .n{color:var(--brand);font-weight:600;width:20px;flex:none;font-variant-numeric:tabular-nums;}
+.toc-item .t{color:var(--ink-soft);}
+.toc-item .d{flex:1;border-bottom:1px dotted var(--line-strong);margin:0 4px;transform:translateY(-3px);}
+.toc-item .p{color:var(--muted);font-variant-numeric:tabular-nums;}
+.toc-item.appx .n{width:auto;font-family:var(--serif);}
+
+/* SHARED SECTION SCAFFOLD */
+.sec-head{margin-bottom:18px;}
+.sec-eyebrow{
+  font-size:7.6pt;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:8px;
+}
+h2.sec-title{
+  font-family:var(--serif);font-size:21pt;font-weight:500;letter-spacing:-.015em;
+  margin:0;color:var(--ink);line-height:1.12;
+}
+.sec-title .num{color:var(--faint);font-variant-numeric:tabular-nums;margin-right:2px;}
+.sec-intro{font-size:10pt;color:var(--ink-soft);margin:12px 0 20px;max-width:96%;}
+
+p{margin:0 0 11px;}
+h3.blk{
+  font-size:10.5pt;font-weight:700;letter-spacing:-.005em;color:var(--ink);
+  margin:22px 0 10px;
+}
+.lead-quiet{color:var(--muted);font-size:9.4pt;}
+
+.stat-band{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0 22px;
+}
+.stat{
+  border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;
+  background:var(--wash);
+}
+.stat .v{font-family:var(--serif);font-size:23pt;color:var(--brand);line-height:1;letter-spacing:-.02em;}
+.stat .l{font-size:8.2pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-top:9px;font-weight:600;}
+.stat .s{font-size:8.4pt;color:var(--muted);margin-top:3px;}
+
+ul.clean{list-style:none;margin:0 0 12px;padding:0;}
+ul.clean li{position:relative;padding-left:18px;margin-bottom:7px;font-size:9.6pt;color:var(--ink-soft);}
+ul.clean li::before{
+  content:"";position:absolute;left:2px;top:.55em;
+  width:6px;height:6px;border-radius:2px;background:var(--brand);
+}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.split.narrow{gap:20px;}
+
+.cards{display:grid;gap:12px;}
+.cards.c2{grid-template-columns:1fr 1fr;}
+.cards.c3{grid-template-columns:repeat(3,1fr);}
+.card{
+  border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:var(--paper);
+}
+.card h4{margin:0 0 6px;font-size:9.6pt;font-weight:700;color:var(--ink);}
+.card p{margin:0;font-size:8.8pt;color:var(--muted);line-height:1.45;}
+.card .tag{font-size:7.4pt;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:700;display:block;margin-bottom:6px;}
+
+table.tbl{width:100%;border-collapse:collapse;margin:6px 0 16px;font-size:8.9pt;}
+table.tbl thead th{
+  background:var(--ink);color:#fff;text-align:left;font-weight:600;
+  padding:8px 10px;font-size:8pt;letter-spacing:.04em;text-transform:uppercase;
+}
+table.tbl thead th:first-child{border-top-left-radius:8px;}
+table.tbl thead th:last-child{border-top-right-radius:8px;}
+table.tbl td{padding:7px 10px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;}
+table.tbl tbody tr:nth-child(even){background:var(--wash);}
+table.tbl td strong{color:var(--ink);}
+
+.mod{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:14px;break-inside:avoid;}
+.mod-head{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--wash);border-bottom:1px solid var(--line);}
+.mod-num{font-family:var(--serif);font-size:15pt;color:var(--brand);font-variant-numeric:tabular-nums;}
+.mod-title{font-size:11pt;font-weight:700;color:var(--ink);flex:1;}
+.mod-badge{font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);background:var(--brand-wash);padding:3px 9px;border-radius:20px;font-weight:700;}
+.mod-sub{font-size:8.4pt;color:var(--muted);padding:2px 16px 0;margin-top:8px;}
+.mod-body{padding:12px 16px 14px;columns:2;column-gap:22px;font-size:8.7pt;}
+.mod-body p{break-inside:avoid;margin:0 0 8px;color:var(--ink-soft);}
+.mod-body strong{color:var(--ink);}
+
+.extra-section{border:1px solid var(--line-strong);border-radius:14px;padding:16px 18px;margin-bottom:14px;background:var(--wash);}
+.extra-section h3{margin:0 0 8px;font-size:11pt;font-weight:700;color:var(--ink);}
+.extra-section p{margin:0 0 6px;font-size:8.8pt;color:var(--muted);line-height:1.45;}
+.extra-section .tag{font-size:7.4pt;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:700;display:block;margin-bottom:8px;}
+
+.steps{counter-reset:step;display:grid;gap:11px;}
+.step{
+  display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start;
+  break-inside:avoid;
+}
+.step .sn{
+  counter-increment:step;
+  font-family:var(--serif);font-size:16pt;color:var(--brand);
+  line-height:1;padding-top:2px;font-variant-numeric:tabular-nums;
+}
+.step .sn::before{content:counter(step,decimal-leading-zero);}
+.step .sb h4{margin:0 0 3px;font-size:9.8pt;font-weight:700;color:var(--ink);}
+.step .sb p{margin:0;font-size:9pt;color:var(--muted);line-height:1.45;}
+
+.small-note{font-size:8.2pt;color:var(--muted);font-style:italic;margin-top:10px;}
+
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:26px;}
+.sign-col .sl{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:16px;}
+.sign-line{border-bottom:1px solid var(--ink);height:34px;margin-bottom:6px;}
+.sign-cap{font-size:8.4pt;color:var(--muted);}
+.sign-field{margin-bottom:14px;}
+.sign-field .fl{font-size:8.4pt;color:var(--muted);}
+.sign-field .fv{border-bottom:1px solid var(--line-strong);min-height:20px;}
+
+@media print{
+  body{background:#fff;}
+  .page{margin:0;box-shadow:none;width:210mm;height:297mm;min-height:297mm;
+        padding:16mm 18mm 18mm;page-break-after:always;page-break-inside:avoid;
+        overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+  @page{size:A4;margin:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="cover-inner">
+    <div class="brand-row">
+      <div class="brand-badge">HR</div>
+      <div class="brand-name">Human Resource Module</div>
+    </div>
+
+    <div class="cover-hero">
+      <div class="eyebrow" style="font-size:10pt;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:#4f46e5;margin-bottom:18px;">Full Scope Proposal</div>
+      
+      <h1 class="cover-title" style="font-family:'Georgia','Palatino Linotype','Palatino',serif;font-size:52pt;line-height:1.08;letter-spacing:-.02em;color:#111318;margin:0 0 28px;font-weight:600;">A complete <em style="font-style:italic;color:#7c3aed;">HR&nbsp;module</em>,<br>from start to end.</h1>
+      
+      <p class="cover-lede" style="max-width:100%;font-size:13pt;line-height:1.7;color:#3a3f4b;margin:0 0 40px;font-family:'Georgia','Palatino Linotype','Palatino',serif;letter-spacing:-.003em;">One integrated HR system for the complete employee journey — from hiring to final settlement, with payroll, leave, overtime and compliance built in.</p>
+    </div>
+
+    <div class="cover-foot" style="border-top:1px solid #cfd4dc;padding-top:18px;display:flex;justify-content:space-between;">
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#6b7280;">Confidential · For evaluation only</div>
+      <div style="font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#6b7280;">HR Module · Version <span style="color:#4f46e5;font-weight:700;">1.0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="page">
+  <div class="section-tag" style="font-size:9pt;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;">Contents</div>
+  
+  <h1 class="doc-h1" style="font-family:var(--serif);font-size:28pt;font-weight:600;letter-spacing:-.02em;margin:0 0 6px;color:var(--ink);line-height:1.15;">Table of Contents</h1>
+  
+  <div class="rule" style="height:3px;background:var(--ink);width:52px;margin:16px 0 28px;"></div>
+  
+  <div class="toc-grid">
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">1</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">Executive Summary</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">3</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">2</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">Why This System Is Needed</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">4</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">3</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">How the System Works</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">5</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">4</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">What Each Module Does</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">6</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">5</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">Reports &amp; Dashboards</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">9</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">6</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">Connections to Other Systems</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">10</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">7</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">What Runs Where</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">11</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:auto;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;font-family:var(--serif);">Extra</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">Additional Modules &amp; Features</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">12</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">8</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">Terms &amp; Conditions</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">13</span>
+    </div>
+    
+    <div class="toc-item" style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-size:11pt;">
+      <span class="n" style="color:var(--brand);font-weight:700;width:28px;flex:none;font-variant-numeric:tabular-nums;font-size:11pt;">9</span>
+      <span class="t" style="color:var(--ink-soft);font-size:11pt;font-weight:500;">Sign-Off &amp; Next Steps</span>
+      <span class="d" style="flex:1;border-bottom:1px dotted var(--line-strong);margin:0 6px;transform:translateY(-4px);"></span>
+      <span class="p" style="color:var(--muted);font-variant-numeric:tabular-nums;font-size:10pt;">14</span>
+    </div>
+  </div>
+</section>
+
+<!-- 01 EXECUTIVE SUMMARY -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 01</div>
+    <h2 class="sec-title"><span class="num">01</span> &nbsp;Executive Summary</h2>
+  </div>
+  <p class="sec-intro">This document describes a complete HR system for a factory-size workforce. It handles the daily work of the HR team from the first day an employee is hired to the last day of their service, and every payroll, leave, overtime and compliance report in between.</p>
+  <p>The scope is arranged in the same order you would follow in real life. First we set up the master data. Then we register employees, assign their designation and grade, put them on a shift with a rest day, and start marking their attendance. Leaves and overtime are approved as they come in. Payroll and wages run at month-end. Budgets are watched throughout. Compliance reports are produced at month-close. Dashboards show leadership what is happening.</p>
+
+  <div class="stat-band">
+    <div class="stat"><div class="v">10</div><div class="l">Modules</div><div class="s">Complete HR job</div></div>
+    <div class="stat"><div class="v">200+</div><div class="l">Live forms</div><div class="s">Already in daily use</div></div>
+    <div class="stat"><div class="v">60+</div><div class="l">Reports</div><div class="s">Print &amp; click-through</div></div>
+    <div class="stat"><div class="v">12–16<span style="font-size:11pt"> wk</span></div><div class="l">Rollout</div><div class="s">Kick-off to go-live</div></div>
+  </div>
+
+  <p>Many HR products handle the easy work — employee records and leave — and stop when the real work begins. This system also handles wages-days calculation, arrears, locked attendance for audits, EOBI and Social Security filings, gratuity, overtime budgets, shift rotations, Alternate Saturday Off rules, and piece-rate coupons. Everything an HR team needs, in one place.</p>
+
+  <h3 class="blk">What you get on day one</h3>
+  <div class="split narrow">
+    <ul class="clean">
+      <li>One system for the whole HR job — no side-files in Excel.</li>
+      <li>A proper workflow for designation, grade, promotion and transfer.</li>
+      <li>A full shift and rest-day engine, including night rotations, ASO and off-day rules.</li>
+      <li>Payroll for salaried staff, wages workers and compliance-paid workers, using a tested days-calculation engine.</li>
+      <li>Overtime from request to posting, with a monthly budget per department and late-sitting for staff.</li>
+    </ul>
+    <ul class="clean">
+      <li>Budget dashboards for headcount, salary and overtime, with live variance by section.</li>
+      <li>An approval matrix you configure yourself, so every action goes to the right person.</li>
+      <li>Excel loaders for legacy data, so migration takes days, not months.</li>
+      <li>Ready-made compliance reports — EOBI, Social Security, Provident Fund, gratuity and ASO.</li>
+      <li>Emailed pay-slips, bank-transfer files, and printable monthly registers.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 02 BUSINESS CONTEXT -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 02</div>
+    <h2 class="sec-title"><span class="num">02</span> &nbsp;Why This System Is Needed</h2>
+  </div>
+  <p class="sec-intro" style="font-size:10.5pt;color:var(--ink-soft);margin:12px 0 24px;max-width:100%;line-height:1.6;">In a factory, HR runs on a tight daily clock. Shift rosters are set on Friday for Monday morning. Wages are worked out on Sunday night so the bank can pay on Monday. An auditor can walk in on any day and ask to see a signed register. The system is built for that pace.</p>
+
+  <h3 class="blk" style="font-size:12pt;font-weight:700;color:var(--ink);margin:0 0 14px;letter-spacing:-.005em;">The problem this solves</h3>
+  <ul class="clean" style="list-style:none;margin:0 0 24px;padding:0;">
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">Attendance sits in one tool, payroll in another, compliance in Excel — the same data keyed again and again.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">Numbers on one report do not agree with numbers on another.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">Corrections happen every day, but no one can prove who did what, when, or why.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">Statutory filings are assembled by hand every month.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">No one knows current headcount versus budget until the month ends.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">Shift and rest-day rules live in a supervisor's head, not in the system.</li>
+  </ul>
+
+  <h3 class="blk" style="font-size:12pt;font-weight:700;color:var(--ink);margin:0 0 14px;letter-spacing:-.005em;">What good looks like</h3>
+  <ul class="clean" style="list-style:none;margin:0;padding:0;">
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">One employee record used by every form.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">Attendance flows from the biometric to payroll without anyone re-typing it.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">Every approval is logged with the user, time and a note.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">EOBI, Social Security and Provident Fund packs ready in one click.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">A dashboard that shows how many people worked yesterday before you finish your morning tea.</li>
+    <li style="position:relative;padding-left:20px;margin-bottom:10px;font-size:10pt;color:var(--ink-soft);line-height:1.55;">No department can quietly go over its overtime or salary budget.</li>
+  </ul>
+</section>
+
+<!-- 03 SOLUTION OVERVIEW -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 03</div>
+    <h2 class="sec-title"><span class="num">03</span> &nbsp;How the System Works</h2>
+  </div>
+  <p class="sec-intro">The HR system runs as a Windows desktop application with a SQL Server database behind it. Web dashboards can be added for people who prefer a browser view.</p>
+
+  <h3 class="blk">The core modules covered</h3>
+  <div class="cards c3">
+    <div class="card"><span class="tag">Lifecycle</span><h4>Employee Lifecycle</h4><p>Hire · Onboard · Contract · Transfer · Exit · Settlement</p></div>
+    <div class="card"><span class="tag">Attendance</span><h4>Attendance &amp; Shift</h4><p>Biometric · Manual · Verify · Shifts · Night · ASO</p></div>
+    <div class="card"><span class="tag">Leave</span><h4>Leaves &amp; Holidays</h4><p>PL · SL · CL · CPL · Gazetted · Balance</p></div>
+    <div class="card"><span class="tag">Payroll</span><h4>Payroll &amp; Salary</h4><p>Staff · Paid · Arrears · Bonus · Tax</p></div>
+    <div class="card"><span class="tag">Overtime</span><h4>Overtime</h4><p>Request · Verify · Approve · Budget · Late-sitting</p></div>
+    <div class="card"><span class="tag">Loans</span><h4>Loans &amp; Advances</h4><p>Employee loan · PF loan · Deductions</p></div>
+    <div class="card"><span class="tag">Transport</span><h4>Transport &amp; Bus</h4><p>Routes · Stops · Reg · Vouchers · Travel</p></div>
+  </div>
+</section>
+
+<!-- 04 MODULE CATALOGUE -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 04</div>
+    <h2 class="sec-title"><span class="num">04</span> &nbsp;What Each Module Does</h2>
+  </div>
+  <p class="sec-intro">The core modules below, each shown with the real screens it includes.</p>
+
+  <div class="mod">
+    <div class="mod-head"><span class="mod-num">01</span><span class="mod-title">Employee Lifecycle</span><span class="mod-badge">Hire → Exit</span></div>
+    <div class="mod-sub">Full employee journey — Hiring Approval → New Joiner → Registration → Registration Approval → Contract → Promotion/Transfer → Resign / Termination → Final Settlement → Gratuity. Traceable, auditable and printable.</div>
+    <div class="mod-body">
+      <p><strong>Hiring Approval.</strong> Multi-step hiring vetting before onboarding begins.</p>
+      <p><strong>New Joiner.</strong> Candidate capture, offer, joining checklist, first-day setup.</p>
+      <p><strong>Registration Form.</strong> Full employee master — personal, family, banking, statutory IDs.</p>
+      <p><strong>Registration Approval.</strong> HR / Compliance sign-off before an employee is "live".</p>
+      <p><strong>Register Employee Contract.</strong> Contract templates, versioning, expiry alerts, print-ready output.</p>
+      <p><strong>Temporary Employee.</strong> Fixed-term contracts with status tracking and conversion path.</p>
+      <p><strong>ID Generation / Card Printing.</strong> Employee-ID assignment and physical card print.</p>
+      <p><strong>Bank Account.</strong> Salary bank + account capture per employee.</p>
+      <p><strong>Job Description.</strong> Per-designation JD library attached to the employee.</p>
+      <p><strong>Designation, Grade &amp; Promotion.</strong> Grade drives salary band, approval rights, leave entitlement and gratuity. Promotion / Transfer routes through supervisor → HOD → HR Head → MD with full audit trail.</p>
+      <p><strong>Shifts &amp; Rest Days.</strong> Shift Master defines start/end, grace, break, night flag and off-day. Allocation by employee, department or combined roster. ASO rotation, night shift, gazetted holiday deletion and exception handling included.</p>
+      <p><strong>Promotion / Transfer.</strong> Direct change form plus a separate request approval flow.</p>
+      <p><strong>Resign / Termination.</strong> Notice-period tracking, categories, exit interview.</p>
+      <p><strong>Final Settlement.</strong> Auto-computed dues; processing and days-correction forms.</p>
+      <p><strong>Gratuity Calculation.</strong> Service-based gratuity with policy rules and audit trail.</p>
+    </div>
+  </div>
+
+  <div class="mod">
+    <div class="mod-head"><span class="mod-num">02</span><span class="mod-title">Attendance &amp; Shift</span><span class="mod-badge">Biometric grade</span></div>
+    <div class="mod-sub">Ingest raw punches from biometric devices, post to registers, run approved manual corrections, allocate shifts including night and rotating patterns, and generate late/absent, duty-duration and department reports.</div>
+    <div class="mod-body">
+      <p><strong>Attendance Posting.</strong> Three variants for the underlying attendance-source system.</p>
+      <p><strong>Manual Attendance.</strong> Missed-punch corrections routed through supervisor + HR.</p>
+      <p><strong>Manual Approval.</strong> HR approval queue; pending list report for supervisors.</p>
+      <p><strong>Update / Transfer.</strong> Post-lock corrections and inter-shift transfers with audit trail.</p>
+      <p><strong>Monthly Entry / Status / Sheet.</strong> Bulk entry, monthly register, sheet-level output.</p>
+      <p><strong>Department &amp; Daily.</strong> Live dept view of present / absent / late / on-leave.</p>
+      <p><strong>Attendance COO.</strong> Executive monthly attendance dashboard for COO / GM.</p>
+      <p><strong>Individual Time.</strong> Employee-level time card, scheduled vs actual.</p>
+      <p><strong>Missing Time / Invalid Swap.</strong> Exception reports for the daily huddle.</p>
+      <p><strong>Lateness &amp; Absent Deduction.</strong> Configurable grace, deduction rules, escalation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="mod">
+    <div class="mod-head"><span class="mod-num">03</span><span class="mod-title">Leaves &amp; Holidays</span><span class="mod-badge">PL / SL / CL / CPL</span></div>
+    <div class="mod-sub">End-to-end leave management: applications, multi-tier approval, manual/HR marking for exceptions, live balance across paid / sick / casual / compensatory buckets, and gazetted-holiday calendars.</div>
+    <div class="mod-body">
+      <p><strong>Leave Application.</strong> Employee-facing form with reason, dates, cover arrangement.</p>
+      <p><strong>Leave Approval.</strong> Supervisor / HOD / HR chain with reject-back reasoning.</p>
+      <p><strong>Bulk Leave Marking.</strong> Manual leave loader for HR-driven cases.</p>
+      <p><strong>Paid Leave Calculation.</strong> Accrual engine with tenure-based rules and pro-ration.</p>
+      <p><strong>Annual Leave Balance.</strong> Single / bulk / ACS view variants for PL balance.</p>
+      <p><strong>Casual &amp; Statutory Balance.</strong> CL &amp; SL balance report for the year.</p>
+      <p><strong>CPL Dates Details.</strong> Comp-off earned vs consumed with dates.</p>
+      <p><strong>Leave Ledger.</strong> Employee-level ledger of leaves granted and consumed.</p>
+      <p><strong>Pending Leaves.</strong> Live queue of applications awaiting action.</p>
+      <p><strong>Gazetted Holidays Master.</strong> Annual calendar with department-specific overrides.</p>
+    </div>
+  </div>
+
+  <div class="mod">
+    <div class="mod-head"><span class="mod-num">04</span><span class="mod-title">Payroll &amp; Salary</span><span class="mod-badge">Staff · Paid</span></div>
+    <div class="mod-sub">Production-tested payroll for salaried &amp; paid streams: multi-variant days calculation, allowances &amp; deductions, arrears, tax, bonus, GL posting, bank-transfer Excel and emailed pay-slips.</div>
+    <div class="mod-body">
+      <p><strong>Salary Calculation.</strong> Staff / Paid streams, with policy per stream.</p>
+      <p><strong>Salary Days.</strong> Global / Bypass / Adjustment variants for edge cases.</p>
+      <p><strong>Deduction &amp; Posting.</strong> Post to GL with department / cost-center split, reversible.</p>
+      <p><strong>Arrears.</strong> Retroactive salary changes computed and posted.</p>
+      <p><strong>Allowance Entry.</strong> Recurring / one-time allowance per employee.</p>
+      <p><strong>Attendance Allowance.</strong> Attendance-linked allowance / deduction layer.</p>
+      <p><strong>Salary Increment.</strong> Bulk &amp; individual increments with effective date.</p>
+      <p><strong>Salary Update.</strong> Effective-dated revision that triggers arrears.</p>
+      <p><strong>Bonus.</strong> Festive / service / performance bonus with policy rules.</p>
+      <p><strong>Tax Calculation.</strong> Slab-based income tax with YTD tracking.</p>
+      <p><strong>Payslip &amp; Email.</strong> Payslip generation + password-protected PDF email.</p>
+      <p><strong>Bank Transfer.</strong> Bank-ready payroll transfer + covering letter print.</p>
+      <p><strong>Monthly Status.</strong> Complete / Wages / T1 register variants, per-employee.</p>
+      <p><strong>Post-Audit Correction.</strong> Controlled correction with backup snapshot.</p>
+    </div>
+  </div>
+
+  <div class="mod">
+    <div class="mod-head"><span class="mod-num">05</span><span class="mod-title">Overtime</span><span class="mod-badge">Budget limits</span></div>
+    <div class="mod-sub">Overtime lifecycle with per-department budget limits, supervisor verification, HR approval and post-load into payroll.</div>
+    <div class="mod-body">
+      <p><strong>OT Allocation.</strong> Plan OT per department against budget and manpower.</p>
+      <p><strong>OT Request.</strong> Employee / supervisor raised OT with justification.</p>
+      <p><strong>Approval List.</strong> HR approval queue with bulk approve / reject.</p>
+      <p><strong>Verification List.</strong> Final HR check before payroll load.</p>
+      <p><strong>OT Budget.</strong> Department budget monitor with early-warning alerts.</p>
+      <p><strong>OT Posting.</strong> Push approved OT into the salary stream.</p>
+      <p><strong>Compliance Process.</strong> Compliance-grade OT processing flow.</p>
+      <p><strong>Compliance Report.</strong> Regulator-friendly OT filing pack.</p>
+      <p><strong>By Attendance / Duration.</strong> OT computed from attendance vs approved OT.</p>
+      <p><strong>Sunday OT.</strong> Rest-day OT breakout for audit.</p>
+    </div>
+  </div>
+
+  <div class="mod">
+    <div class="mod-head"><span class="mod-num">06</span><span class="mod-title">Loans &amp; Advances</span><span class="mod-badge">Salary-linked</span></div>
+    <div class="mod-sub">Issue employee loans and provident-fund loans with instalment plans, tracked balances, automatic salary deduction and other one-time deduction workflows.</div>
+    <div class="mod-body">
+      <p><strong>Loan &amp; Advance.</strong> Principal, instalments, interest, guarantor tracking.</p>
+      <p><strong>Provident Fund Loan.</strong> PF-backed loans with regulator-compliant balance.</p>
+      <p><strong>Loan Loader.</strong> Bulk existing-loan migration from legacy sheets.</p>
+      <p><strong>Other Deductions.</strong> Non-loan one-time / recurring deductions per employee.</p>
+      <p><strong>Loan Summary.</strong> Outstanding vs paid vs skipped instalments across loans.</p>
+      <p><strong>Loan Paid.</strong> Instalment-level paid history per employee.</p>
+    </div>
+  </div>
+
+  <div class="mod">
+    <div class="mod-head"><span class="mod-num">07</span><span class="mod-title">Transport &amp; Bus</span><span class="mod-badge">Fleet-linked</span></div>
+    <div class="mod-sub">Company-transport module: define bus routes and stops, register employees to routes, and issue transportation vouchers for travel-expense reimbursement.</div>
+    <div class="mod-body">
+      <p><strong>Bus Route Registration.</strong> Route number, distance, capacity, driver, vehicle.</p>
+      <p><strong>Bus Stop Registration.</strong> Named stops along each route with pickup timings.</p>
+      <p><strong>Employee Registration.</strong> Assign employee to route + stop; monthly changes tracked.</p>
+      <p><strong>Travel Expense Request.</strong> Business-travel claim with receipt attachment.</p>
+      <p><strong>Employee Gate Pass.</strong> Movement pass for employees, linked to HR master.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 REPORTS & DASHBOARDS -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 05</div>
+    <h2 class="sec-title"><span class="num">05</span> &nbsp;Reports &amp; Dashboards</h2>
+  </div>
+  <p class="sec-intro">Every screen you work on has a matching report you can print. The dashboards use the very same records, so the number on screen and the number on paper always agree — nothing is worked out separately in Excel.</p>
+
+  <h3 class="blk">Operational registers (Crystal, printable)</h3>
+  <p class="lead-quiet">Monthly Attendance Register · Monthly Attendance Sheet · Monthly Time Attendance · Individual Time (Actual) · Duty Duration · Late/Absent · Absent Deduction · Attendance Register · Salary Ledger · Salary List · Salary Slip · Wages Payment (Audit / Compliance / User) · Wages Extra Work · Wages Summary · Bonus List · Loan Summary · Loan Paid · EOBI Payment List · Social Security · PF &amp; Gratuity Details · Provident Fund Detailed · Payroll Report · Gratuity Register · Final Settlement Detailed · Head Count &amp; Master · Department Strength (With Salary) · Sewing Linewise Strength · Shift Wise Details · Shift Match Register · Shift Allotment · Signature Authority Report · Deduction View · CNIC Expiry · Hygiene Card · Register Reports.</p>
+
+  <h3 class="blk">Executive dashboards</h3>
+  <div class="cards c2">
+    <div class="card"><span class="tag">Budget</span><h4>Strength &amp; Budget Dashboard</h4><p>Section-wise budgeted vs actual headcount and salary, with 12-month rolling trend.</p></div>
+    <div class="card"><span class="tag">People</span><h4>Employee Status Dashboard</h4><p>MTD joiners / terminations, today's leaves, monthly join &amp; term chart, click-through by department.</p></div>
+    <div class="card"><span class="tag">Attendance</span><h4>Attendance COO</h4><p>Executive daily snapshot with department drill-down.</p></div>
+    <div class="card"><span class="tag">Analytics</span><h4>Salary &amp; Wages Analysis</h4><p>Analytical view across streams, departments, months and cost centres.</p></div>
+    <div class="card"><span class="tag">Overtime</span><h4>Compliance Overtime Report</h4><p>OT hours vs budget by department, regulator-friendly format.</p></div>
+    <div class="card"><span class="tag">Loans</span><h4>Loan Summary</h4><p>Active loan value, instalment coverage, skipped-instalment risk view.</p></div>
+    <div class="card"><span class="tag">Capacity</span><h4>Shift-Wise Details</h4><p>Skilled / non-skilled / manager headcount per shift, for capacity planning.</p></div>
+    <div class="card"><span class="tag">Live</span><h4>Daily Attendance Shift Status</h4><p>Live present / absent / on-leave by department and shift.</p></div>
+  </div>
+</section>
+
+<!-- 06 INTEGRATIONS -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 06</div>
+    <h2 class="sec-title"><span class="num">06</span> &nbsp;Connections to Other Systems</h2>
+  </div>
+  <p class="sec-intro">The system connects to the tools an HR team already relies on — devices, email, banks, the general ledger and Excel.</p>
+  <div class="cards c2">
+    <div class="card"><span class="tag">Devices</span><h4>Biometric / Attendance</h4><p>Feed into attendance posting; bulk import from device DBs or exported CSV; automatic de-duplication.</p></div>
+    <div class="card"><span class="tag">Email</span><h4>Corporate Email (SMTP)</h4><p>Password-protected PDF pay-slips; notifications, approval reminders, statutory alerts.</p></div>
+    <div class="card"><span class="tag">Banking</span><h4>Banks</h4><p>Bank-specific salary-transfer Excel; per-employee validation before export.</p></div>
+    <div class="card"><span class="tag">Finance</span><h4>ERP / GL</h4><p>Payroll journal posting to the general ledger with department and cost-centre split.</p></div>
+    <div class="card"><span class="tag">Spreadsheets</span><h4>Excel (COM &amp; OpenXML)</h4><p>Every loader is Excel-first; every report exports to a formatted workbook.</p></div>
+    <div class="card"><span class="tag">Documents</span><h4>PDF Generation</h4><p>Pay-slips, contracts, offer letters and termination letters generated on demand.</p></div>
+  </div>
+</section>
+
+<!-- 07 DEPLOYMENT -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 07</div>
+    <h2 class="sec-title"><span class="num">07</span> &nbsp;What Runs Where</h2>
+  </div>
+  <p class="sec-intro">The system runs on standard Windows Server and SQL Server infrastructure, with lightweight desktop clients kept current by an auto-updater.</p>
+  <div class="cards c2">
+    <div class="card"><span class="tag">Server</span><h4>Server</h4><p>Windows Server 2016+; SQL Server 2016+ (Standard or Enterprise). Two catalogues — Live and Test — identical schema. File share for auto-update and payslip archive. Nightly full backup + hourly log backup; weekly off-site copy.</p></div>
+    <div class="card"><span class="tag">Client</span><h4>Client</h4><p>Windows 10 / 11; .NET Framework 4.5+. Auto-updater compares network build vs local build on launch. UI redistributables shipped alongside; no admin install per user.</p></div>
+    <div class="card"><span class="tag">Network</span><h4>Network</h4><p>Client → SQL over TCP 1433 (LAN or VPN). SMTP relay for pay-slip email; scheduler on server for daily jobs. Biometric ingest via shared folder or scheduled DB pull.</p></div>
+    <div class="card"><span class="tag">Optional</span><h4>Web dashboards</h4><p>ASP.NET MVC on IIS. Same SQL back-end — no data duplication. Chart.js dashboards vendored offline; no external CDN calls.</p></div>
+  </div>
+</section>
+
+<!-- EXTRA SECTIONS -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Additional</div>
+    <h2 class="sec-title">Additional Modules &amp; Features</h2>
+  </div>
+  <p class="sec-intro">These modules and features are included in the full HR suite and work alongside the core modules.</p>
+
+  <div class="extra-section">
+    <span class="tag">Module</span>
+    <h3>Wages (Piece-rate / IE)</h3>
+    <p>The wages workforce is driven by coupon-based piece-rate output. The suite handles the full path — days calculation, coupon issue and scan, extra work, corrections, and payment lists (audit &amp; compliance variants).</p>
+    <p><strong>Key features:</strong> Wages Calculation · Wages Days (Compliance) · Wages Posting · Deduction &amp; Posting · Wages Incentive · Manual Correction · Monthly Status (Wages) · Daily Payment List · Payment List (Compliance / Audit / User) · Extra Work Payment · Summary &amp; Cost/Minute · Coupon Suite (Printing, Re-Creation, Adjustment, Duplicate Removal, Tracking, Scan Register, Quality Approval).</p>
+  </div>
+
+  <div class="extra-section">
+    <span class="tag">Module</span>
+    <h3>Reports &amp; Dashboards</h3>
+    <p>Curated dashboards and printable registers built on the same tables as operations — so numbers on screen match numbers on paper.</p>
+    <p><strong>Key features:</strong> Strength &amp; Budget · Employee Status · Head Count &amp; Master · Department Strength · Sewing Linewise · Salary &amp; Wages Analysis · Shift-Wise Details · Attendance COO · CNIC Expiry · Hygiene / Register Reports.</p>
+  </div>
+
+  <div class="extra-section">
+    <span class="tag">Module</span>
+    <h3>Compliance &amp; Statutory</h3>
+    <p>Pakistan factory-audit and statutory requirements built in.</p>
+    <p><strong>Key features:</strong> EOBI Payment List · Social Security · Provident Fund + PF Loan · Gratuity · Signature Authority · Approval Hierarchy · Incident &amp; Policies.</p>
+  </div>
+
+  <div class="extra-section">
+    <span class="tag">Feature</span>
+    <h3>Who Approves What</h3>
+    <p>You decide who approves what. Set it once in the approval settings, and every request in the system is then sent to the right person automatically.</p>
+    <p><strong>Key approvals:</strong> Hiring (HOD → HR Head → GM) · Registration (HR Executive → HR Head → Compliance) · Designation / Grade (HOD → HR Head → MD) · Promotion / Transfer (HOD → HR Head → MD) · Shift Change (Supervisor → HOD → HR) · Leave (Supervisor → HOD → HR) · Manual Attendance (Supervisor → HR) · Overtime (Supervisor → HOD → HR) · Employee Loan (HOD → Finance → MD) · Salary Increment (HOD → HR Head → MD) · Termination (HOD → HR Head → Compliance + MD) · Final Settlement (HR → Finance → MD).</p>
+  </div>
+
+  <div class="extra-section">
+    <span class="tag">Feature</span>
+    <h3>Automatic Email Alerts</h3>
+    <p>The system emails the right person the moment something important happens — an approval waiting too long, an OT budget close to its limit, a CNIC about to expire, or a payroll cycle just posted.</p>
+    <p><strong>Alert categories:</strong> Approval reminders · Payroll cycle alerts · Attendance &amp; strength · Budget &amp; variance · Compliance alerts · Executive digests · Employee-facing alerts · System &amp; audit alerts.</p>
+  </div>
+</section>
+
+<!-- 08 TERMS -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 08</div>
+    <h2 class="sec-title"><span class="num">08</span> &nbsp;Terms &amp; Conditions</h2>
+  </div>
+  <ul class="clean">
+    <li><strong>Validity.</strong> This proposal is valid for 45 days from the date of issue.</li>
+    <li><strong>Change control.</strong> Any change beyond the signed BRD is estimated and signed before work starts.</li>
+    <li><strong>IP.</strong> The provider retains ownership of the platform. The client owns its own configuration, data and any custom reports built for it.</li>
+    <li><strong>Confidentiality.</strong> Mutual NDA covering all client data, policies and personnel information.</li>
+    <li><strong>Warranty.</strong> 90 days post go-live for defects on delivered scope.</li>
+    <li><strong>Support.</strong> Post-warranty support under a separate agreement.</li>
+  </ul>
+  <p class="small-note">Commercial terms are covered in a separate document issued alongside this proposal.</p>
+</section>
+
+<!-- 09 ACCEPTANCE -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Section 09</div>
+    <h2 class="sec-title"><span class="num">09</span> &nbsp;Sign-Off &amp; Next Steps</h2>
+  </div>
+  <p class="sec-intro">Signing this page confirms that both sides accept the scope and approach in this proposal. The full contract and the detailed requirements document will follow within 5 working days.</p>
+  <div class="steps" style="margin-bottom:8px">
+    <div class="step"><div class="sn"></div><div class="sb"><h4>Sign &amp; share</h4><p>Sign this page and share it with the delivery team.</p></div></div>
+    <div class="step"><div class="sn"></div><div class="sb"><h4>Agreement issued</h4><p>The delivery team sends the main services agreement and the project charter.</p></div></div>
+  </div>
+
+  <div class="sign">
+    <div class="sign-col">
+      <div class="sl">For the Client</div>
+      <div class="sign-field"><div class="fl">Name</div><div class="fv">&nbsp;</div></div>
+      <div class="sign-field"><div class="fl">Designation</div><div class="fv">&nbsp;</div></div>
+      <div class="sign-line"></div>
+      <div class="sign-cap">Signature &amp; date · Authorised signatory</div>
+    </div>
+    <div class="sign-col">
+      <div class="sl">For the Provider</div>
+      <div class="sign-field"><div class="fl">Name</div><div class="fv">&nbsp;</div></div>
+      <div class="sign-field"><div class="fl">Designation</div><div class="fv">&nbsp;</div></div>
+      <div class="sign-line"></div>
+      <div class="sign-cap">Signature &amp; date · Authorised signatory</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

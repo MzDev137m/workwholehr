@@ -1,0 +1,75 @@
+/* Uniform section header — every section on the site uses this shape */
+
+.head {
+  margin-bottom: 44px;
+  max-width: none;
+}
+.headCenter {
+  text-align: center;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--orange);
+  padding: 8px 16px;
+  background: rgba(243, 156, 31, .10);
+  border: 1px solid rgba(243, 156, 31, .28);
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+.eyebrowDot {
+  width: 7px;
+  height: 7px;
+  background: var(--orange);
+  transform: rotate(45deg);
+  display: inline-block;
+  box-shadow: 0 0 0 3px rgba(243, 156, 31, .22);
+}
+
+.title {
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  margin: 6px 0 0;
+  text-transform: none;
+}
+
+.rule {
+  display: block;
+  width: 84px;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 2px;
+  margin: 20px 0 22px;
+  transform-origin: left center;
+  animation: ruleGrow .9s var(--ease-out) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+.headCenter .rule { margin-left: auto; margin-right: auto; transform-origin: center; }
+
+.lead {
+  font-size: 17px;
+  color: var(--ink-2);
+  line-height: 1.75;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+}
+.headCenter .lead { margin-left: auto; margin-right: auto; max-width: 780px; }
+
+@keyframes ruleGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}

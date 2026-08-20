@@ -1,0 +1,686 @@
+/* Main header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  transition: background .4s var(--ease-out),
+              border-color .4s var(--ease-out),
+              box-shadow .3s var(--ease-out);
+}
+.header.scrolled { box-shadow: 0 8px 20px rgba(15, 23, 42, .06); }
+
+/* Once scrolled past the hero, header takes on the hero's navy theme */
+:global(html.hdr-past-hero) .header {
+  background: var(--navy-deep);
+  border-bottom-color: rgba(255, 255, 255, .08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+}
+:global(html.hdr-past-hero) .wordmarkTop { color: #fff; }
+:global(html.hdr-past-hero) .wordmarkBottom { color: var(--orange); }
+:global(html.hdr-past-hero) .link { color: rgba(255, 255, 255, .82); }
+:global(html.hdr-past-hero) .link:hover { color: var(--orange-2); }
+:global(html.hdr-past-hero) .link.linkActive { color: var(--orange); }
+:global(html.hdr-past-hero) .linkIcon {
+  border-color: rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .70);
+}
+:global(html.hdr-past-hero) .link:hover .linkIcon,
+:global(html.hdr-past-hero) .link.linkActive .linkIcon {
+  color: var(--orange);
+  border-color: var(--orange);
+}
+:global(html.hdr-past-hero) .menuBtn {
+  background: rgba(255, 255, 255, .06);
+  border-color: rgba(255, 255, 255, .18);
+}
+:global(html.hdr-past-hero) .menuBtn span { background: #fff; }
+:global(html.hdr-past-hero) .menuBtn:hover {
+  background: rgba(243, 156, 31, .16);
+  border-color: var(--orange);
+}
+:global(html.hdr-past-hero) .chev { color: rgba(255, 255, 255, .60); }
+
+/* ==== DRAWER — navy theme when past hero ==== */
+:global(html.hdr-past-hero) .mobileDrawer {
+  background: var(--navy-deep);
+  color: #fff;
+  box-shadow: -20px 0 40px rgba(0, 0, 0, .48);
+}
+:global(html.hdr-past-hero) .drawerHead {
+  background: var(--navy-deep);
+  border-bottom-color: rgba(255, 255, 255, .08);
+}
+:global(html.hdr-past-hero) .drawerClose {
+  background: rgba(255, 255, 255, .06);
+  border-color: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+:global(html.hdr-past-hero) .drawerClose:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+}
+
+:global(html.hdr-past-hero) .drawerGroup {
+  border-bottom-color: rgba(255, 255, 255, .08);
+}
+
+:global(html.hdr-past-hero) .drawerLink {
+  color: rgba(255, 255, 255, .88);
+}
+:global(html.hdr-past-hero) .drawerLink:hover,
+:global(html.hdr-past-hero) .drawerLink.linkActive {
+  color: var(--orange);
+  background: rgba(243, 156, 31, .10);
+}
+:global(html.hdr-past-hero) .drawerLinkIcon {
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+}
+:global(html.hdr-past-hero) .drawerLink:hover .drawerLinkIcon,
+:global(html.hdr-past-hero) .drawerLink.linkActive .drawerLinkIcon {
+  background: var(--orange);
+  color: #fff;
+}
+
+:global(html.hdr-past-hero) .drawerToggle {
+  background: rgba(255, 255, 255, .06);
+  border-color: rgba(255, 255, 255, .12);
+  color: rgba(255, 255, 255, .72);
+}
+:global(html.hdr-past-hero) .drawerToggle:hover,
+:global(html.hdr-past-hero) .drawerToggleOpen {
+  background: rgba(243, 156, 31, .14);
+  border-color: rgba(243, 156, 31, .42);
+  color: var(--orange);
+}
+:global(html.hdr-past-hero) .drawerCount { color: rgba(255, 255, 255, .80); }
+:global(html.hdr-past-hero) .drawerToggle:hover .drawerCount,
+:global(html.hdr-past-hero) .drawerToggleOpen .drawerCount { color: var(--orange); }
+
+:global(html.hdr-past-hero) .drawerSub {
+  border-left-color: var(--orange);
+}
+:global(html.hdr-past-hero) .drawerSubLink {
+  color: rgba(255, 255, 255, .72);
+}
+:global(html.hdr-past-hero) .drawerSubLink:hover,
+:global(html.hdr-past-hero) .drawerSubLink.linkActive {
+  color: var(--orange);
+  background: rgba(255, 255, 255, .04);
+}
+:global(html.hdr-past-hero) .drawerSubIcon {
+  background: rgba(255, 255, 255, .08);
+  color: rgba(255, 255, 255, .80);
+}
+:global(html.hdr-past-hero) .drawerSubLink:hover .drawerSubIcon,
+:global(html.hdr-past-hero) .drawerSubLink.linkActive .drawerSubIcon {
+  background: var(--orange);
+  color: #fff;
+}
+
+:global(html.hdr-past-hero) .drawerContact {
+  border-top-color: rgba(255, 255, 255, .08);
+}
+:global(html.hdr-past-hero) .drawerContactList li { color: rgba(255, 255, 255, .82); }
+:global(html.hdr-past-hero) .drawerContactList a { color: #fff; }
+:global(html.hdr-past-hero) .drawerContactList a:hover { color: var(--orange); }
+:global(html.hdr-past-hero) .drawerContactIcon {
+  background: rgba(255, 255, 255, .06);
+  color: var(--orange);
+}
+
+:global(html.hdr-past-hero) .drawerFoot {
+  background: var(--navy-deep);
+  border-top-color: rgba(255, 255, 255, .08);
+}
+
+/* Drawer wordmark contrast */
+:global(html.hdr-past-hero) .drawerBrand .wordmarkTop { color: #fff; }
+:global(html.hdr-past-hero) .drawerBrand .wordmarkBottom { color: var(--orange); }
+
+.inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+  height: 96px;
+}
+
+.brand { display: inline-flex; align-items: center; gap: 14px; }
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  background: var(--orange);
+  border-radius: 10px;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(243, 156, 31, .32);
+  transition: transform .3s var(--ease-out);
+}
+.brand:hover .mark,
+.drawerBrand:hover .mark { transform: rotate(-4deg) scale(1.05); }
+.wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+.wordmarkTop {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: .01em;
+}
+.wordmarkBottom {
+  font-size: 11.5px;
+  color: var(--orange);
+  margin-top: 4px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Nav */
+.nav {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  height: 100%;
+  justify-self: end;
+}
+.navItem {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  height: 100%;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  position: relative;
+  height: 100%;
+  transition: color .2s var(--ease-out);
+}
+.link:hover { color: var(--orange); }
+.link:hover .linkIcon,
+.linkActive .linkIcon { color: var(--orange); border-color: var(--orange); }
+.linkIcon {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  color: var(--ink-3);
+  transition: color .2s var(--ease-out), border-color .2s var(--ease-out);
+}
+.linkActive { color: var(--orange); }
+.linkActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--orange);
+}
+.chev {
+  margin-left: 2px;
+  color: currentColor;
+  opacity: .7;
+  transition: transform .2s var(--ease-out);
+}
+.navItem:hover .chev { transform: rotate(180deg); }
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 560px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--orange);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, .16);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity .18s var(--ease-out),
+              visibility .18s var(--ease-out),
+              transform .18s var(--ease-out);
+  z-index: 60;
+}
+.dropdownOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdownInner { padding: 18px 20px 16px; }
+.dropdownGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.dropItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background .2s var(--ease-out), color .2s var(--ease-out);
+  border-left: 3px solid transparent;
+}
+.dropItem:hover {
+  background: var(--bg-soft);
+  color: var(--orange);
+}
+.dropItemActive {
+  background: var(--bg-soft);
+  color: var(--orange);
+  border-left-color: var(--orange);
+}
+.dropIcon {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(26, 59, 110, .08);
+  color: var(--navy);
+  transition: background .2s var(--ease-out), color .2s var(--ease-out);
+}
+.dropItem:hover .dropIcon,
+.dropItemActive .dropIcon {
+  background: var(--orange);
+  color: #fff;
+}
+.dropLabel { flex: 1; }
+.dropAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  width: 100%;
+  justify-content: flex-end;
+  transition: color .2s var(--ease-out);
+}
+.dropAll:hover { color: var(--orange); }
+.dropAll svg { transition: transform .2s var(--ease-out); }
+.dropAll:hover svg { transform: translateX(3px); }
+
+/* ================================================================
+   Mobile drawer + backdrop
+   ================================================================ */
+.mobileBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(15, 38, 73, .48);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s var(--ease-out), visibility .3s var(--ease-out);
+}
+.mobileBackdropOpen { opacity: 1; visibility: visible; }
+
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 65;
+  width: min(360px, 88vw);
+  height: 100dvh;
+  background: #fff;
+  box-shadow: -20px 0 40px rgba(15, 38, 73, .18);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  opacity: .6;
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1),
+              opacity .45s cubic-bezier(.22, 1, .36, 1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  will-change: transform;
+}
+.mobileDrawerOpen {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Drawer header */
+.drawerHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.drawerBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.drawerClose {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s var(--ease-out), color .2s var(--ease-out);
+  flex-shrink: 0;
+}
+.drawerClose:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+/* Nav */
+.drawerNav {
+  flex: 1;
+  padding: 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.drawerGroup {
+  border-bottom: 1px solid var(--line);
+  padding: 6px 0;
+}
+.drawerGroup:last-child { border-bottom: none; }
+
+.drawerRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  gap: 4px;
+}
+.drawerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  transition: color .2s var(--ease-out), background .2s var(--ease-out);
+  flex: 1;
+}
+.drawerLink:hover,
+.drawerLink.linkActive { color: var(--orange); background: rgba(243, 156, 31, .08); }
+.drawerLinkIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(26, 59, 110, .08);
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .2s var(--ease-out), color .2s var(--ease-out);
+}
+.drawerLink:hover .drawerLinkIcon,
+.drawerLink.linkActive .drawerLinkIcon {
+  background: var(--orange);
+  color: #fff;
+}
+.drawerLinkLabel { min-width: 0; }
+
+.drawerToggle {
+  min-width: 52px;
+  height: 40px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 0 10px;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 999px;
+  transition: color .25s var(--ease-out),
+              background .25s var(--ease-out),
+              border-color .25s var(--ease-out);
+}
+.drawerToggle:hover {
+  color: var(--orange);
+  background: rgba(243, 156, 31, .10);
+  border-color: rgba(243, 156, 31, .32);
+}
+.drawerToggle svg { transition: transform .3s var(--ease-out); }
+.drawerToggleOpen {
+  color: var(--orange);
+  background: rgba(243, 156, 31, .12);
+  border-color: rgba(243, 156, 31, .38);
+}
+.drawerToggleOpen svg { transform: rotate(180deg); }
+
+.drawerCount {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -.02em;
+  min-width: 16px;
+  text-align: center;
+}
+.drawerToggle:hover .drawerCount,
+.drawerToggleOpen .drawerCount { color: var(--orange); }
+
+/* Smooth accordion — grid-template-rows 0fr → 1fr trick */
+.drawerSubWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .4s cubic-bezier(.22, 1, .36, 1);
+  overflow: hidden;
+}
+.drawerSubWrapOpen {
+  grid-template-rows: 1fr;
+}
+.drawerSubWrap > .drawerSub {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.drawerSub {
+  list-style: none;
+  padding: 6px 0 10px 12px;
+  margin: 4px 0 6px 20px;
+  border-left: 2px solid var(--orange);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Staggered item fade-in when the accordion opens */
+.drawerSubWrapOpen .drawerSub li {
+  animation: drawerSubIn .35s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * .04s + .10s);
+}
+@keyframes drawerSubIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawerSubWrap { transition: none; }
+  .drawerSubWrapOpen .drawerSub li { animation: none; }
+}
+.drawerSubLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  font-weight: 600;
+  transition: color .2s var(--ease-out), background .2s var(--ease-out);
+}
+.drawerSubLink:hover,
+.drawerSubLink.linkActive {
+  color: var(--orange);
+  background: var(--bg-soft);
+}
+.drawerSubIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.drawerSubLink:hover .drawerSubIcon,
+.drawerSubLink.linkActive .drawerSubIcon { background: var(--orange); color: #fff; }
+
+/* Section label — separates Menu / Get in touch inside the drawer */
+.drawerSectionLbl {
+  padding: 18px 20px 8px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+/* Contact block inside drawer */
+.drawerContact {
+  border-top: 1px solid var(--line);
+  padding: 0 20px 18px;
+}
+.drawerContact .drawerSectionLbl { padding: 18px 0 12px; }
+.drawerContactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.drawerContactList li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  align-items: center;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.drawerContactList a {
+  color: var(--navy);
+  font-weight: 600;
+  transition: color .2s var(--ease-out);
+}
+.drawerContactList a:hover { color: var(--orange); }
+.drawerContactIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--orange);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Drawer footer CTA */
+.drawerFoot {
+  padding: 18px 20px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+  position: sticky;
+  bottom: 0;
+}
+.drawerFoot :global(.btn) { width: 100%; justify-content: center; }
+
+/* Menu button (hamburger) */
+.menuBtn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background .2s var(--ease-out), border-color .2s var(--ease-out);
+}
+.menuBtn:hover { background: rgba(243, 156, 31, .10); border-color: var(--orange); }
+.menuBtn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform .25s var(--ease-out), opacity .25s var(--ease-out);
+}
+.open .menuBtn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.open .menuBtn span:nth-child(2) { opacity: 0; }
+.open .menuBtn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile layout — icon LEFT, wordmark CENTER, hamburger RIGHT.
+   Trick: use `display: contents` on the brand link so its inner mark
+   and wordmark become direct grid children of `.inner` and can be
+   placed independently. */
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .menuBtn { display: inline-flex; }
+  .inner {
+    grid-template-columns: 44px 1fr 44px;
+    height: 68px;
+    align-items: center;
+    column-gap: 12px;
+  }
+  .brand { display: contents; }
+  .mark {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    width: 40px;
+    height: 40px;
+  }
+  .wordmark {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    text-align: center;
+    align-items: center;
+  }
+  .wordmarkBottom { display: none; }
+  .wordmarkTop { font-size: 17px; }
+  .menuBtn { grid-column: 3; grid-row: 1; justify-self: end; }
+}
+@media (max-width: 480px) {
+  .wordmarkTop { font-size: 15px; letter-spacing: 0; }
+  .mark { width: 36px; height: 36px; }
+  .inner { column-gap: 8px; }
+}

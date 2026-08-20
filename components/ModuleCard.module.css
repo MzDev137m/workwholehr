@@ -1,0 +1,106 @@
+.card {
+  background: #ffffff;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s var(--ease-out),
+              box-shadow .4s var(--ease-out),
+              border-color .35s var(--ease-out);
+  animation: moduleCardIn .65s cubic-bezier(.22, 1, .36, 1) both;
+}
+@keyframes moduleCardIn {
+  from { opacity: 0; transform: translateY(24px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--orange);
+  opacity: 0;
+  transition: opacity .3s var(--ease-out);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--orange);
+}
+.card:hover::before { opacity: 1; }
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.iconWrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(26, 59, 110, .20);
+  transition: background .25s var(--ease-out);
+}
+.card:hover .iconWrap { background: var(--orange); box-shadow: 0 8px 18px rgba(243, 156, 31, .28); }
+
+.count {
+  font-size: 22px;
+  color: var(--navy);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.count span {
+  display: block;
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 3px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 4px 0 0;
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+.tag {
+  color: var(--ink-3);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--navy);
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding-top: 12px;
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  transition: gap .25s var(--ease-out), color .25s var(--ease-out);
+}
+.card:hover .link { gap: 12px; color: var(--orange); }

@@ -1,0 +1,378 @@
+{
+  "modules": [
+    {
+      "slug": "employee-lifecycle",
+      "name": "Employee Lifecycle",
+      "icon": "users",
+      "tagline": "Hiring → Onboarding → Contract → Transfer → Exit — one system, one source of truth.",
+      "summary": "Manage the full employee journey with configurable approval chains, digital contracts, transfers, resignations, terminations, gratuity and final settlement — all traceable, auditable and printable.",
+      "features": [
+        { "name": "Job Requisition & Approval", "detail": "Department-raised requisitions routed through the configurable approval chain." },
+        { "name": "New Starter / Hiring", "detail": "Candidate capture, offer, joining checklist and initial setup." },
+        { "name": "Employee Registration & Approval", "detail": "Multi-step vetting with configurable sign-off across the approval chain." },
+        { "name": "Employee Master", "detail": "Full profile — personal, family, contact, education, banking, statutory IDs and previous employment." },
+        { "name": "Digital Employment Contract", "detail": "Contract templates, versioning, expiry alerts and print-ready output." },
+        { "name": "Designation & Grade Updation", "detail": "Promotions, demotions and reclassification with effective-dated history." },
+        { "name": "Employee Transfer", "detail": "Inter-department and inter-section transfers with letter generation." },
+        { "name": "Resignation & Termination", "detail": "Resign flow, termination categories, notice tracking and exit interview." },
+        { "name": "Final Settlement", "detail": "Auto-computed dues, deductions, EOBI/SS and gratuity — one-click printout." },
+        { "name": "Gratuity Calculation", "detail": "Service-based gratuity with policy rules and audit trail." }
+      ]
+    },
+    {
+      "slug": "attendance",
+      "name": "Attendance & Shift",
+      "icon": "clock",
+      "tagline": "Biometric-integrated attendance for staff, wages and compliance-registered workforce.",
+      "summary": "Ingest raw punches from biometric devices, post to attendance registers, run manual corrections with an approval trail, allocate shifts including night and rotating patterns, and generate late/absent, duty-duration and department-wise attendance reports.",
+      "features": [
+        { "name": "Machine Attendance Posting", "detail": "Bulk import from biometric devices, dedupe, normalise across sites." },
+        { "name": "Manual Attendance & Approval", "detail": "Missed-punch corrections routed through the standard approval chain." },
+        { "name": "Attendance Verification", "detail": "Compliance-grade verification workflow with locked periods." },
+        { "name": "Attendance Transfer & Adjustments", "detail": "Move punches between shifts / departments, remove extras." },
+        { "name": "Shift Allotment & Change", "detail": "Employee-wise, department-wise, with off-day and night patterns." },
+        { "name": "In-Out & Manual In-Out", "detail": "Gate-log capture with manual override for compliance." },
+        { "name": "Attendance Register / Sheet", "detail": "Printable registers, sheets and a complete audit copy." },
+        { "name": "Department Daily Attendance", "detail": "Live dept view of present / absent / late / on-leave." },
+        { "name": "Duty Duration Report", "detail": "Actual vs scheduled hours; supports staff and wages logic." },
+        { "name": "Late / Absent Report", "detail": "Configurable grace, deduction rules, escalation." }
+      ]
+    },
+    {
+      "slug": "payroll",
+      "name": "Payroll & Salary",
+      "icon": "wallet",
+      "tagline": "Days-calculation engine, staff/wages/compliance streams, arrears, deductions, bank transfer, PDF pay-slips.",
+      "summary": "A production-tested payroll engine that supports staff, wages and compliance-paid streams; multi-variant days calculation (global, current-month, arrears, comp-off, bypass); auto arrears, deductions and allowances; salary posting, bank transfer Excel and emailed pay-slips.",
+      "features": [
+        { "name": "Salary Calculation (Staff / Wages / Paid)", "detail": "Separate calculation streams with policy per stream." },
+        { "name": "Days Calculation Engine", "detail": "Global, current-month, comp-off, arrears and bypass variants." },
+        { "name": "Salary Posting", "detail": "Post to GL with department / cost-center split and reversibility." },
+        { "name": "Arrears Processing", "detail": "Retroactive salary changes computed and posted automatically." },
+        { "name": "Allowances & Deductions", "detail": "Recurring / one-time / rule-based; overrides per employee." },
+        { "name": "Salary Increment", "detail": "Bulk & individual increments with effective date and approval." },
+        { "name": "Bonus & Incentive", "detail": "IE-driven department incentive, festive bonus, service bonus." },
+        { "name": "Income Tax (IT) Details", "detail": "Slab-based tax with year-to-date tracking and challan support." },
+        { "name": "Bank Transfer Excel", "detail": "Ready-to-upload salary transfer files per bank format." },
+        { "name": "Emailed Pay-Slips", "detail": "PDF pay-slips sent to employee inbox with password protection." },
+        { "name": "EOBI / Social Security Payment Lists", "detail": "Statutory contribution lists ready for filing." }
+      ]
+    },
+    {
+      "slug": "leaves",
+      "name": "Leaves & Holidays",
+      "icon": "calendar",
+      "tagline": "Application → Approval → Balance — with PL/SL/CL/CPL and gazetted holiday engine.",
+      "summary": "End-to-end leave management: employee applications with document attachment, multi-tier approval through the standard chain, manual marking for exceptions, live balance across paid / sick / casual / compensatory / privilege buckets, and gazetted-holiday calendars.",
+      "features": [
+        { "name": "Leave Types & Policies", "detail": "PL, SL, CL, CPL, half-day, comp-off — configurable rules." },
+        { "name": "Leave Application", "detail": "Employee-facing form with reason, attachment, cover-arrangement." },
+        { "name": "Leave Approval Workflow", "detail": "Standard approval chain with reject-back reasoning at every step." },
+        { "name": "Manual Leave Marking", "detail": "Configurable override for exceptional cases with full audit trail." },
+        { "name": "Leave Balance", "detail": "Live PL/SL/CL/CPL balances with year-end carry-forward rules." },
+        { "name": "PL / SL / CL Calculation", "detail": "Accrual engine with tenure-based rules and pro-ration." },
+        { "name": "Gazetted Holidays", "detail": "Annual holiday calendar with department-specific overrides." },
+        { "name": "CPL Calculation Report", "detail": "Comp-off earned vs consumed reporting for compliance." }
+      ]
+    },
+    {
+      "slug": "overtime",
+      "name": "Overtime",
+      "icon": "spark",
+      "tagline": "Request → Verify → Approve → Post — with department budgets and late-sitting handling.",
+      "summary": "Overtime allocation and request flow with per-department budget guard-rails, standard-chain verification and approval, load-OT sync, late-sitting requests and OT-verification list for payroll posting.",
+      "features": [
+        { "name": "OT Allocation", "detail": "Plan OT per department against budget and manpower." },
+        { "name": "OT Request", "detail": "Employee- or requester-raised OT with justification." },
+        { "name": "OT Approval List", "detail": "Approval queue with bulk approve or reject." },
+        { "name": "OT Verification", "detail": "Reconcile machine punches with approved OT." },
+        { "name": "OT Budget", "detail": "Department budget monitor with early-warning alerts." },
+        { "name": "Load OT", "detail": "Sync approved OT into the salary calculation stream." },
+        { "name": "Late-Sitting Request", "detail": "After-hours attendance capture for salaried staff." }
+      ]
+    },
+    {
+      "slug": "loans",
+      "name": "Loans & Advances",
+      "icon": "hand",
+      "tagline": "Employee loans and PF loans with instalment plans and auto salary deduction.",
+      "summary": "Issue employee loans and provident-fund loans with configurable instalment plans, tracked balances, automatic salary deduction and other one-time deduction workflows.",
+      "features": [
+        { "name": "Employee Loan", "detail": "Principal, instalments, interest, guarantor tracking." },
+        { "name": "Provident Fund Loan", "detail": "PF-backed loans with regulator-compliant balance." },
+        { "name": "Other Deductions", "detail": "One-time / recurring non-loan deductions per employee." },
+        { "name": "Auto Salary Deduction", "detail": "Instalment auto-picked into the salary cycle." },
+        { "name": "Loan Balance Report", "detail": "Outstanding vs paid vs skipped instalments." }
+      ]
+    },
+    {
+      "slug": "transport",
+      "name": "Transport",
+      "icon": "bus",
+      "tagline": "Bus routes, stops, employee registration and transportation voucher issuance.",
+      "summary": "Complete company-transport module: define bus routes and stops, register employees to routes, and issue transportation vouchers for travel-expense reimbursement.",
+      "features": [
+        { "name": "Bus Route Master", "detail": "Route number, distance, capacity, driver, vehicle." },
+        { "name": "Bus Stop Registration", "detail": "Named stops along each route with pickup timings." },
+        { "name": "Employee Bus Registration", "detail": "Assign employee to route + stop; route and stop changes tracked." },
+        { "name": "Transportation Voucher", "detail": "Reimbursement voucher generation and approval." },
+        { "name": "Travel Expense Request", "detail": "Business-travel claim with receipt attachment." }
+      ]
+    },
+    {
+      "slug": "reports",
+      "name": "Reports & Dashboards",
+      "icon": "chart",
+      "tagline": "Everything HR needs to see, in one place — from headcount budget to live strength.",
+      "summary": "Curated dashboards and printable registers built on the same source data as operations, so numbers on screen match numbers on paper. Includes headcount vs budget, section-wise strength, live strength report, printable registers, ASO exception reporting and more.",
+      "features": [
+        { "name": "Strength & Budget Dashboard", "detail": "Headcount vs section budget with variance drill-down." },
+        { "name": "Employee Status Dashboard", "detail": "Joiners / terminations / current leaves in one view." },
+        { "name": "Live Strength Report", "detail": "Present / absent / on-leave by department and shift." },
+        { "name": "Duty Duration Report", "detail": "Actual worked hours vs scheduled by employee." },
+        { "name": "Late / Absent Report", "detail": "Exception report for the operations review." },
+        { "name": "Shift-Wise SNM", "detail": "Shift-wise skilled / non-skilled / manager headcount." },
+        { "name": "ASO Reports", "detail": "Alternate-Saturday-Off compliance and coverage reports." },
+        { "name": "Section Head-Count Budget", "detail": "Budgeted vs actual by section, with rolling-window trend." }
+      ]
+    },
+    {
+      "slug": "compliance",
+      "name": "Compliance & Statutory",
+      "icon": "shield",
+      "tagline": "EOBI, Social Security, Provident Fund, gratuity and factory-audit-ready registers.",
+      "summary": "Meet Pakistan factory-audit and statutory requirements out of the box: EOBI and Social Security contribution lists, PF loan tracking, gratuity calculation, ASO (Alternate-Saturday-Off) rules and locked attendance periods for auditors.",
+      "features": [
+        { "name": "EOBI Payment List", "detail": "Employee-wise EOBI contribution ready for filing." },
+        { "name": "Social Security Payment List", "detail": "Provincial SS list with rates and effective dates." },
+        { "name": "Gratuity Register", "detail": "Service-based gratuity provisions and payouts." },
+        { "name": "ASO Compliance", "detail": "Alternate-Saturday-Off rule engine with blocked-department list." },
+        { "name": "Locked Period Verification", "detail": "Once verified, attendance months lock to protect audit trail." },
+        { "name": "Authority Matrix & Signature Mapping", "detail": "Configurable who-approves-what — mapped by role, grade and department." }
+      ]
+    }
+  ],
+  "kpis": [
+    { "label": "Active Employees", "value": "6,842", "trend": "+112 trend" },
+    { "label": "Attendance", "value": "6,281", "trend": "91.8% present" },
+    { "label": "On Leave", "value": "308", "trend": "4.5%" },
+    { "label": "New Joiners", "value": "142", "trend": "+18 vs prior period" },
+    { "label": "Terminations", "value": "36", "trend": "-9 vs prior period", "trendDown": true },
+    { "label": "OT Hours", "value": "18,540", "trend": "84% of budget" },
+    { "label": "Salary Paid", "value": "PKR 214.6M", "trend": "posted" },
+    { "label": "Active Loan Balance", "value": "PKR 32.4M", "trend": "1,204 loans" }
+  ],
+  "workflow": [
+    {
+      "step": "01",
+      "title": "Hire",
+      "icon": "users",
+      "detail": "Requisition → offer → joining checklist. Employee master and digital contract created in one go.",
+      "inputs":  ["Requisition", "Offer letter", "Joining checklist"],
+      "outputs": ["Employee master", "Digital contract"]
+    },
+    {
+      "step": "02",
+      "title": "Attend",
+      "icon": "clock",
+      "detail": "Biometric punches ingested automatically; manual corrections routed through the standard approval chain.",
+      "inputs":  ["Biometric feed", "Manual corrections"],
+      "outputs": ["Attendance register", "Late / absent report"]
+    },
+    {
+      "step": "03",
+      "title": "Leave & OT",
+      "icon": "calendar",
+      "detail": "Employee applies, request is verified and approved through the standard chain. Balances update live.",
+      "inputs":  ["Leave application", "OT request"],
+      "outputs": ["Updated balances", "Approval trail"]
+    },
+    {
+      "step": "04",
+      "title": "Calculate",
+      "icon": "layers",
+      "detail": "Days engine (staff / wages / comp) rolls attendance, leaves, OT, arrears and deductions into one pay run.",
+      "inputs":  ["Attendance", "Leaves", "OT", "Arrears"],
+      "outputs": ["Days calc", "Pay register"]
+    },
+    {
+      "step": "05",
+      "title": "Post & Pay",
+      "icon": "wallet",
+      "detail": "Salary posts to GL, bank-transfer Excel exported, pay-slips emailed with password protection.",
+      "inputs":  ["Approved pay register"],
+      "outputs": ["GL posting", "Bank transfer file", "Pay-slips"]
+    },
+    {
+      "step": "06",
+      "title": "Comply",
+      "icon": "shield",
+      "detail": "EOBI, SS, PF and gratuity registers generated and archived for the next audit visit.",
+      "inputs":  ["Pay run", "Attendance"],
+      "outputs": ["EOBI list", "SS list", "PF & gratuity registers"]
+    }
+  ],
+  "whySystem": {
+    "intro": "In a factory, HR runs on a tight operational tempo. Shift rosters must be published quickly, wages calculated for the next bank cycle, and an auditor may arrive at any point and ask to see a signed register. The system is built for that pace.",
+    "problems": [
+      "Attendance sits in one tool, payroll in another, compliance in Excel — the same data keyed again and again.",
+      "Numbers on one report do not agree with numbers on another.",
+      "Corrections happen constantly, but no one can prove who did what or why.",
+      "Statutory filings are assembled by hand.",
+      "No one knows current headcount versus budget until close-of-cycle.",
+      "Shift and rest-day rules live in a supervisor's head, not in the system."
+    ],
+    "wins": [
+      "One employee record used by every form.",
+      "Attendance flows from the biometric to payroll without anyone re-typing it.",
+      "Every approval is logged with the user and a note.",
+      "EOBI, Social Security and Provident Fund packs ready in one click.",
+      "A dashboard that shows current strength before your first meeting.",
+      "No department can quietly go over its overtime or salary budget."
+    ]
+  },
+  "integrations": [
+    { "tag": "Devices",       "name": "Biometric / Attendance",  "detail": "Feed into attendance posting; bulk import from device DBs or exported CSV; automatic de-duplication." },
+    { "tag": "Email",         "name": "Corporate Email (SMTP)",  "detail": "Password-protected PDF pay-slips; notifications, approval reminders, statutory alerts." },
+    { "tag": "Banking",       "name": "Banks",                   "detail": "Bank-specific salary-transfer Excel; per-employee validation before export." },
+    { "tag": "Finance",       "name": "ERP / GL",                "detail": "Payroll journal posting to the general ledger with department and cost-centre split." },
+    { "tag": "Spreadsheets",  "name": "Excel (COM & OpenXML)",   "detail": "Every loader is Excel-first; every report exports to a formatted workbook." },
+    { "tag": "Documents",     "name": "PDF Generation",          "detail": "Pay-slips, contracts, offer letters and termination letters generated on demand." }
+  ],
+  "deployment": [
+    { "tag": "Server",   "name": "Server",          "detail": "Windows Server 2016+; SQL Server 2016+ (Standard or Enterprise). Two catalogues — Live and Test — identical schema. File share for auto-update and payslip archive. Full backup + log backup rotation with off-site copy." },
+    { "tag": "Client",   "name": "Client",          "detail": "Windows 10 / 11; .NET Framework 4.5+. Auto-updater compares network build vs local build on launch. UI redistributables shipped alongside; no admin install per user." },
+    { "tag": "Network",  "name": "Network",         "detail": "Client → SQL over TCP 1433 (LAN or VPN). SMTP relay for pay-slip email; server-side scheduler for background jobs. Biometric ingest via shared folder or scheduled DB pull." },
+    { "tag": "Optional", "name": "Web dashboards",  "detail": "ASP.NET MVC on IIS. Same SQL back-end — no data duplication. Chart.js dashboards vendored offline; no external CDN calls." }
+  ],
+  "additional": {
+    "wages": {
+      "tag": "Module",
+      "title": "Wages (Piece-rate / IE)",
+      "summary": "The wages workforce is driven by coupon-based piece-rate output. The suite handles the full path — days calculation, coupon issue and scan, extra work, corrections, and payment lists (audit & compliance variants).",
+      "features": [
+        "Wages Calculation",
+        "Wages Days (Compliance)",
+        "Wages Posting",
+        "Deduction & Posting",
+        "Wages Incentive",
+        "Manual Correction",
+        "Monthly Status (Wages)",
+        "Daily Payment List",
+        "Payment List (Compliance / Audit / User)",
+        "Extra Work Payment",
+        "Summary & Cost/Minute",
+        "Coupon Suite (Printing, Re-Creation, Adjustment, Duplicate Removal, Tracking, Scan Register, Quality Approval)"
+      ]
+    },
+    "compliance": {
+      "tag": "Module",
+      "title": "Compliance & Statutory",
+      "summary": "Pakistan factory-audit and statutory requirements built in.",
+      "features": [
+        "EOBI Payment List",
+        "Social Security",
+        "Provident Fund + PF Loan",
+        "Gratuity",
+        "Signature Authority",
+        "Approval Hierarchy",
+        "Incident & Policies"
+      ]
+    },
+    "approvals": {
+      "tag": "Feature",
+      "title": "Who Approves What",
+      "summary": "One generic approval engine, configured once and reused across every module. The same Check → Verify → Approve chain drives most flows; extended chains cover the two-step and post-required cases.",
+      "chains": [
+        {
+          "name": "Standard",
+          "steps": ["Check", "Verify", "Approve"],
+          "modules": [
+            "Hiring",
+            "Registration",
+            "Designation / Grade",
+            "Promotion / Transfer",
+            "Shift Change",
+            "Leave",
+            "Overtime",
+            "Salary Increment",
+            "Termination"
+          ]
+        },
+        {
+          "name": "Short",
+          "steps": ["Check", "Approve"],
+          "modules": [
+            "Manual Attendance"
+          ]
+        },
+        {
+          "name": "Extended",
+          "steps": ["Check", "Verify", "Approve", "Post"],
+          "modules": [
+            "Employee Loan",
+            "Final Settlement"
+          ]
+        }
+      ]
+    },
+    "alerts": {
+      "tag": "Feature",
+      "title": "Automatic Email Alerts",
+      "summary": "The system emails the right person the moment something important happens — an approval sitting in a queue, an OT budget close to its limit, a CNIC about to expire, or a payroll cycle just posted.",
+      "categories": [
+        { "name": "Approval reminders",     "detail": "Nudges when a request sits unanswered in a queue." },
+        { "name": "Payroll cycle alerts",   "detail": "Cycle-open, posted and locked notices to Finance & HR." },
+        { "name": "Attendance & strength",  "detail": "Strength snapshots, absentee spikes and shift shortfalls." },
+        { "name": "Budget & variance",      "detail": "Overtime and salary budget breach warnings." },
+        { "name": "Compliance alerts",      "detail": "CNIC / hygiene / contract expiries with lead notice." },
+        { "name": "Executive digests",      "detail": "COO / MD summary digests." },
+        { "name": "Employee-facing alerts", "detail": "Pay-slip, leave-status and loan updates to the employee." },
+        { "name": "System & audit alerts",  "detail": "Lock events, post-audit corrections and login exceptions." }
+      ]
+    }
+  },
+  "pricing": [
+    {
+      "tier": "Essentials",
+      "price": "Starter",
+      "for": "Up to 250 employees",
+      "features": [
+        "Employee lifecycle",
+        "Attendance & shift",
+        "Leaves & holidays",
+        "Payroll (single stream)",
+        "Basic reports",
+        "On-premise deployment"
+      ]
+    },
+    {
+      "tier": "Enterprise",
+      "price": "Recommended",
+      "for": "250 – 5,000 employees, multi-stream payroll",
+      "highlight": true,
+      "features": [
+        "Everything in Essentials",
+        "Staff / Wages / Paid streams",
+        "OT, Loans, Transport modules",
+        "Emailed pay-slips + bank transfer",
+        "Strength & Budget dashboards",
+        "EOBI / SS / PF / Gratuity",
+        "Authority-matrix approvals"
+      ]
+    },
+    {
+      "tier": "Group",
+      "price": "Custom",
+      "for": "Multi-unit / multi-company groups",
+      "features": [
+        "Everything in Enterprise",
+        "Multi-company consolidation",
+        "Compliance-audit lockdown",
+        "Custom dashboards & KPIs",
+        "SLA-backed support",
+        "Dedicated success manager"
+      ]
+    }
+  ]
+}

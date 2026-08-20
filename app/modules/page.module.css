@@ -1,0 +1,50 @@
+.pageHero {
+  background: var(--navy);
+  color: #fff;
+  padding: 76px 0 84px;
+  position: relative;
+  overflow: hidden;
+}
+.pageHero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(500px 300px at 85% 20%, rgba(243,156,31,.16), transparent 60%),
+    radial-gradient(400px 300px at 0% 100%, rgba(255,255,255,.06), transparent 60%);
+  pointer-events: none;
+}
+.heroKicker {
+  position: relative;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.heroTitle {
+  position: relative;
+  color: #fff;
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.heroLede {
+  position: relative;
+  color: rgba(255,255,255,.82);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 68ch;
+  margin: 0 0 26px;
+}
+.heroCta {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
