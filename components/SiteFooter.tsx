@@ -82,16 +82,16 @@ export default function SiteFooter() {
             <li className={styles.contactItem}>
               <span className={styles.contactIcon} aria-hidden><Icon name="mapPin" size={16} /></span>
               <address className={styles.addr}>
-                Software Technology Park<br />Karachi, Pakistan
+                Pakistan
               </address>
             </li>
             <li className={styles.contactItem}>
               <span className={styles.contactIcon} aria-hidden><Icon name="phone" size={16} /></span>
-              <a href="tel:+92-21-000-0000" className={styles.contactLink}>+92-21-000-0000</a>
+              <a href="tel:+923004783996" className={styles.contactLink}>0300-4783996</a>
             </li>
             <li className={styles.contactItem}>
               <span className={styles.contactIcon} aria-hidden><Icon name="mail" size={16} /></span>
-              <a href="mailto:sales@hr-module.local" className={styles.contactLink}>sales@hr-module.local</a>
+              <a href="mailto:m.muzammal.dev@gmail.com" className={styles.contactLink}>m.muzammal.dev@gmail.com</a>
             </li>
           </ul>
         </div>
@@ -121,7 +121,7 @@ export default function SiteFooter() {
 const SOCIAL = [
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/muzammal-tariq/",
     svg: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
         <path d="M4.98 3.5A2.5 2.5 0 1 1 4.98 8.5a2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.65 4.77 6.1V21H18.4v-5.5c0-1.31-.03-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21H10z"/>
@@ -129,29 +129,11 @@ const SOCIAL = [
     ),
   },
   {
-    label: "YouTube",
-    href: "#",
-    svg: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M23.5 7.3s-.24-1.66-.97-2.4c-.93-.98-1.98-.98-2.46-1.04C16.7 3.5 12 3.5 12 3.5s-4.7 0-8.07.36c-.48.06-1.53.06-2.46 1.04C.74 5.64.5 7.3.5 7.3S.24 9.24.24 11.19v1.62c0 1.95.26 3.89.26 3.89s.24 1.66.97 2.4c.93.98 2.14.95 2.69 1.05C6.14 20.5 12 20.5 12 20.5s4.7 0 8.07-.36c.48-.06 1.53-.06 2.46-1.04.73-.74.97-2.4.97-2.4s.26-1.94.26-3.89v-1.62c0-1.95-.26-3.9-.26-3.9zM9.5 15.4V8.6l6.2 3.4-6.2 3.4z"/>
-      </svg>
-    ),
-  },
-  {
     label: "WhatsApp",
-    href: "#",
+    href: "https://wa.me/923004783996",
     svg: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
         <path d="M20.5 3.5A11 11 0 0 0 3 17l-1.5 5.5L7 21a11 11 0 0 0 13.5-17.5z"/>
-      </svg>
-    ),
-  },
-  {
-    label: "Facebook",
-    href: "#",
-    svg: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M13 22v-8h3l.5-4H13V7.6c0-1.15.32-1.93 1.97-1.93H17V2.13A28 28 0 0 0 14.13 2C11.28 2 9.4 3.66 9.4 6.7v3.3H6.5v4h2.9v8z"/>
       </svg>
     ),
   },
