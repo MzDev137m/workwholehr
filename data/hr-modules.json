@@ -205,7 +205,7 @@
     },
     {
       "step": "06",
-      "title": "Comply",
+      "title": "Compliance",
       "icon": "shield",
       "detail": "EOBI, SS, PF and gratuity registers generated and archived for the next audit visit.",
       "inputs":  ["Pay run", "Attendance"],
