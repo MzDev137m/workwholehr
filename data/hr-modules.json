@@ -138,7 +138,7 @@
     },
     {
       "slug": "compliance",
-      "name": "Compliance & Statutory",
+      "name": "Compliance",
       "icon": "shield",
       "tagline": "EOBI, Social Security, Provident Fund, gratuity and factory-audit-ready registers.",
       "summary": "Meet Pakistan factory-audit and statutory requirements out of the box: EOBI and Social Security contribution lists, PF loan tracking, gratuity calculation, ASO (Alternate-Saturday-Off) rules and locked attendance periods for auditors.",
@@ -267,7 +267,7 @@
     },
     "compliance": {
       "tag": "Module",
-      "title": "Compliance & Statutory",
+      "title": "Compliance",
       "summary": "Pakistan factory-audit and statutory requirements built in.",
       "features": [
         "EOBI Payment List",
