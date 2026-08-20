@@ -173,7 +173,7 @@
     },
     {
       "step": "02",
-      "title": "Attend",
+      "title": "Attendance",
       "icon": "clock",
       "detail": "Biometric punches ingested automatically; manual corrections routed through the standard approval chain.",
       "inputs":  ["Biometric feed", "Manual corrections"],
